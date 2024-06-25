@@ -1,10 +1,10 @@
-package LLD.ObserverPattern;
+package LLD.ObserverPattern.SimpleExample;
 
-import LLD.ObserverPattern.Observable.IphoneObservable;
-import LLD.ObserverPattern.Observable.StockObservable;
-import LLD.ObserverPattern.Observer.EmailObserver;
-import LLD.ObserverPattern.Observer.MobileObserver;
-import LLD.ObserverPattern.Observer.NotificationObserver;
+import LLD.ObserverPattern.SimpleExample.Observable.IphoneObservable;
+import LLD.ObserverPattern.SimpleExample.Observable.StockObservable;
+import LLD.ObserverPattern.SimpleExample.Observer.EmailObserver;
+import LLD.ObserverPattern.SimpleExample.Observer.MobileObserver;
+import LLD.ObserverPattern.SimpleExample.Observer.NotificationObserver;
 
 public class ObserverPatternRunner {
     public static void main(String[] args) {

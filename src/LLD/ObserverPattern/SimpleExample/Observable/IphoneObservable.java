@@ -1,6 +1,6 @@
-package LLD.ObserverPattern.Observable;
+package LLD.ObserverPattern.SimpleExample.Observable;
 
-import LLD.ObserverPattern.Observer.NotificationObserver;
+import LLD.ObserverPattern.SimpleExample.Observer.NotificationObserver;
 
 import java.util.ArrayList;
 import java.util.List;
