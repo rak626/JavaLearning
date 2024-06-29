@@ -1,4 +1,4 @@
-package lld.LiskovPrinciple.Solution;
+package lld.liskovprinciple.Solution;
 
 public class EngineVehicle extends Vehicle{
     public Boolean hasEngine() {

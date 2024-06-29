@@ -1,4 +1,4 @@
-package lld.Structural.DecoratorPattern;
+package lld.structural.decoratorpattern;
 
 public class ExtraMayo extends BurgerDecorator {
 

@@ -1,4 +1,4 @@
-package lld.LiskovPrinciple.Solution;
+package lld.liskovprinciple.Solution;
 
 public class Bicycle extends Vehicle {
     @Override

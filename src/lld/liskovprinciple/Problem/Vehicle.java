@@ -1,6 +1,6 @@
-package lld.LiskovPrinciple.Problem;
+package lld.liskovprinciple.Problem;
 
-public class Car extends Vehicle {
+public class Vehicle {
     public Integer noOfWheels() {
         return 4;
     }

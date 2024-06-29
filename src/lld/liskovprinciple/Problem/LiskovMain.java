@@ -1,4 +1,4 @@
-package lld.LiskovPrinciple.Problem;
+package lld.liskovprinciple.Problem;
 
 import java.util.ArrayList;
 import java.util.List;

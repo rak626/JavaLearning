@@ -1,4 +1,4 @@
-package lld.Structural.DecoratorPattern;
+package lld.structural.decoratorpattern;
 
 public abstract class Burger {
     private String desc;

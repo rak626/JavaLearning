@@ -1,4 +1,4 @@
-package lld.Structural.DecoratorPattern;
+package lld.structural.decoratorpattern;
 
 // is-A relationship with Burger
 public class ExtraCheese extends BurgerDecorator{
