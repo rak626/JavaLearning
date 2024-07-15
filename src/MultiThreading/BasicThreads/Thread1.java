@@ -1,7 +1,8 @@
-package MultiThreading;
+package MultiThreading.BasicThreads;
 
 public class Thread1 extends Thread {
 
+    // overload the super constructor
     public Thread1(String threadName)  {
         super(threadName);
     }
