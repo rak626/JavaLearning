@@ -1,4 +1,4 @@
-package lld.creational.BuilderDesignPattern;
+package lld.creational.BuilderDesignPattern.example1;
 
 public class Car {
     private String wheelType;

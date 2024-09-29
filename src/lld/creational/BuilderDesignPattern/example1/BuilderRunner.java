@@ -1,4 +1,4 @@
-package lld.creational.BuilderDesignPattern;
+package lld.creational.BuilderDesignPattern.example1;
 
 public class BuilderRunner {
     public static void main(String[] args) {
