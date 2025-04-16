@@ -46,13 +46,13 @@ FILEPATH="$CATEGORY/$FILE_NAME"
 cat << EOF > "$FILEPATH"
 /**
  * Problem: $PROBLEM_NAME
- * Link: $PROBLEM_LINK
+ * Link: <a href="$PROBLEM_LINK">...</a>
  * Difficulty: $DIFFICULTY
  * Tags: ${TAGS:-$CATEGORY}
- *
+ * <p>
  * Approach:
  * -
- *
+ * <p>
  * Time: O()
  * Space: O()
  */

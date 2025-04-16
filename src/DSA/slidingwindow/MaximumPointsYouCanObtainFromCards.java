@@ -2,7 +2,7 @@ package DSA.slidingwindow;
 
 /**
  * Problem: Maximum Points You Can Obtain From Cards
- * Link: https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/description/
+ * Link: <a href="https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/description/">...</a>
  * Difficulty: Medium
  * Tags: SlidingWindow
  * <p>
