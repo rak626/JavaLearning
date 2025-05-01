@@ -46,7 +46,7 @@ FILEPATH="$CATEGORY/$FILE_NAME"
 cat << EOF > "$FILEPATH"
 /**
  * Problem: $PROBLEM_NAME
- * Link: <a href="$PROBLEM_LINK">...</a>
+ * Link: <a href="$PROBLEM_LINK">Click here</a>
  * Difficulty: $DIFFICULTY
  * Tags: ${TAGS:-$CATEGORY}
  * <p>
@@ -57,9 +57,7 @@ cat << EOF > "$FILEPATH"
  * Space: O()
  */
 public class $CLASS_NAME {
-    public static void main(String[] args) {
-        // Test your code here
-    }
+
 }
 EOF
 

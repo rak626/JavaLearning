@@ -28,7 +28,7 @@ public class LongestRepeatingCharacterReplacement {
                 left++;
 //                maxFreq = Arrays.stream(hash).max().getAsInt();
 //                remove this line because if maxFreq will not bigger, then maxLen will not be bigger. So no point to be updating maxFreq
-            }
+             }
             maxLen = Math.max(maxLen, right - left + 1);
         }
         return maxLen;

@@ -2,7 +2,7 @@ package DSA.slidingwindow;
 
 /**
  * Problem: Binary Subarrays With Sum
- * Link: <a href="https://leetcode.com/problems/binary-subarrays-with-sum/description/">...</a>
+ * Link: <a href="https://leetcode.com/problems/binary-subarrays-with-sum/description/">Click here</a>
  * Difficulty: Medium
  * Tags: SlidingWindow
  * <p>
