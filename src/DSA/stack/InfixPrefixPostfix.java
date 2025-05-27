@@ -20,6 +20,7 @@ public class InfixPrefixPostfix {
         Stack<Character> st = new Stack<>();
 
         for (char c : s.toCharArray()) {
+            // if c is operand
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
                 sb.append(c);
             } else if (c == '(') {

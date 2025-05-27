@@ -6,11 +6,11 @@ package DSA.tree;
  * Difficulty: Easy
  * Tags: Tree
  * <p>
- * Approach:
+ * Approach: simple DFS traversal
  * -
  * <p>
- * Time: O()
- * Space: O()
+ * Time: O(N)
+ * Space: O(N)
  */
 public class MaximumDepthOfBinaryTree {
     public int maxDepth(TreeNode root) {

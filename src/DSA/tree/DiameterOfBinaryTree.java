@@ -7,10 +7,12 @@ package DSA.tree;
  * Tags: Tree
  * <p>
  * Approach:
+ * 1. used to found height of BT (dfs)
+ * 2. pass the maxLen to track all over the height,
  * -
  * <p>
- * Time: O()
- * Space: O()
+ * Time: O(N)
+ * Space: O(N)
  */
 public class DiameterOfBinaryTree {
     public int diameterOfBinaryTree(TreeNode root) {
