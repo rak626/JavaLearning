@@ -1,6 +1,7 @@
 package DSA.stack;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Problem: InfixPrefixPostfix
@@ -17,7 +18,7 @@ import java.util.Stack;
 public class InfixPrefixPostfix {
     public static String infixToPostfix(String s) {
         StringBuilder sb = new StringBuilder();
-        Stack<Character> st = new Stack<>();
+        Deque<Character> st = new ArrayDeque<>();
 
         for (char c : s.toCharArray()) {
             // if c is operand

@@ -1,5 +1,7 @@
 package DSA.tree;
 
+import DSA.utils.TreeNode;
+
 /**
  * Problem: Diameter Of Binary Tree
  * Link: <a href="https://leetcode.com/problems/diameter-of-binary-tree/description/">Click here</a>

@@ -1,5 +1,7 @@
 package DSA.tree;
 
+import DSA.utils.TreeNode;
+
 /**
  * Problem: Binary Tree Maximum Path Sum
  * Link: <a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/description/">Click here</a>
@@ -7,12 +9,10 @@ package DSA.tree;
  * Tags: tree
  * <p>
  * Approach:
- * 1. simple dfs,
- * 2. ignore path where we can get negative value, make them as 0
  * -
  * <p>
- * Time: O(N)
- * Space: O(N) (recursion stack space)
+ * Time: O()
+ * Space: O()
  */
 public class BinaryTreeMaximumPathSum {
     public int maxPathSum(TreeNode root) {

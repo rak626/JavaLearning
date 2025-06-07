@@ -1,5 +1,7 @@
 package DSA.tree;
 
+import DSA.utils.TreeNode;
+
 /**
  * Problem: Balanced Binary Tree
  * Link: <a href="https://leetcode.com/problems/balanced-binary-tree/description/">Click here</a>

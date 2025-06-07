@@ -1,6 +1,7 @@
 package DSA.stack;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Problem: Simplify Path
@@ -17,7 +18,7 @@ import java.util.Stack;
 public class SimplifyPath {
     public String simplifyPath(String path) {
         String[] words = path.split("/");
-        Stack<String> st = new Stack<>();
+        Deque<String> st = new ArrayDeque<>();
         for (String word : words) {
             if (word.isBlank() || word.equals(".")) continue;
             if (word.equals("..")) {

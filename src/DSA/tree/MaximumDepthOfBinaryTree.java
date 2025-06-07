@@ -1,5 +1,7 @@
 package DSA.tree;
 
+import DSA.utils.TreeNode;
+
 /**
  * Problem: Maximum Depth Of Binary Tree
  * Link: <a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/description/">Click here</a>

@@ -1,5 +1,7 @@
 package DSA.tree;
 
+import DSA.utils.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;

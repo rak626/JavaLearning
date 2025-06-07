@@ -1,5 +1,7 @@
 package DSA.stack;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 /**
@@ -9,10 +11,10 @@ import java.util.Stack;
  * Tags: stack
  * <p>
  * Approach:
- * -
+ * - Use some container to track the min value for each value in stack
  * <p>
- * Time: O()
- * Space: O()
+ * Time: O(1)
+ * Space: O(N)
  */
 
 class StackContainer {
@@ -34,9 +36,9 @@ class StackContainer {
 }
 
 public class MinStack {
-    private final Stack<StackContainer> st;
+    private final Deque<StackContainer> st;
     public MinStack() {
-        st = new Stack<>();
+        st = new ArrayDeque<>();
     }
 
     public void push(int val) {
