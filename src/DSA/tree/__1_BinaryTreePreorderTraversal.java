@@ -16,7 +16,7 @@ import java.util.*;
  * Time: O()
  * Space: O()
  */
-public class BinaryTreePreorderTraversal {
+public class __1_BinaryTreePreorderTraversal {
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         preorderTraversalRecursive(root, result);

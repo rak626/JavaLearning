@@ -18,7 +18,7 @@ import java.util.Stack;
  * Time: O()
  * Space: O()
  */
-public class BinaryTreePostorderTraversal {
+public class __3__BinaryTreePostorderTraversal {
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
 //        postorderTraversalRecursive(root, result);

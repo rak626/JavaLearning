@@ -18,7 +18,7 @@ import java.util.Stack;
  * Time: O()
  * Space: O()
  */
-public class BinaryTreeInorderTraversal {
+public class __2__BinaryTreeInorderTraversal {
 
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();

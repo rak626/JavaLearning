@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Stack;
 
 
-public class BinaryTreeInorderPreorderPostorderInOneTraversal {
+public class __4__BinaryTreeInorderPreorderPostorderInOneTraversal {
     public void preInPostTraversal(TreeNode root) {
         Stack<Pair<TreeNode, Integer>> st = new Stack<>();
         st.push(new Pair<>(root, 1));

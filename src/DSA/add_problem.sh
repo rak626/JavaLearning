@@ -4,9 +4,9 @@
 # ./add_problem.sh "https://leetcode.com/problems/two-sum/" e "Array, HashMap"
 # ./add_problem.sh "https://leetcode.com/problems/two-sum/" m
 
-PROBLEM_LINK=$1
-INPUT_DIFFICULTY=$(echo "$2" | tr '[:upper:]' '[:lower:]')
-TAGS=$3
+INPUT_DIFFICULTY=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+TAGS=$2
+PROBLEM_LINK=$3
 
 if [ -z "$PROBLEM_LINK" ]; then
   echo "❌ Usage: ./add_problem.sh <leetcode-url> [e|m|h] [tags]"
@@ -46,9 +46,11 @@ FILEPATH="$CATEGORY/$FILE_NAME"
 cat << EOF > "$FILEPATH"
 /**
  * Problem: $PROBLEM_NAME
- * Link: <a href="$PROBLEM_LINK">Click here</a>
- * Difficulty: $DIFFICULTY
- * Tags: ${TAGS:-$CATEGORY}
+ * <ul>
+ * <li>Link: <a href="$PROBLEM_LINK">$PROBLEM_NAME</a></li>
+ * <li>Difficulty: $DIFFICULTY</li>
+ * <li>Tags: ${TAGS:-$CATEGORY}</li>
+ * </ul>
  * <p>
  * Approach:
  * -
