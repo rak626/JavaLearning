@@ -1,6 +1,8 @@
 package DSA.graph;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Deque;
 
 /**
  * Problem: Is Graph Bipartite
@@ -86,15 +88,10 @@ public class __G17_G18__Bipartite_Graph {
         Arrays.fill(color, -1);
 
         for (int i = 0; i < n; i++) {
-            if (color[i] == -1 && !dfs(i, 0, color, graph)) {
+            if (color[i] == -1 && dfs(i, 0, color, graph)) {
                 return false;
             }
         }
-
-
-        List<Integer> ans = new ArrayList<>();
-
-        ans.clear();
         return true;
     }
 
@@ -104,9 +101,9 @@ public class __G17_G18__Bipartite_Graph {
             if (color[nei] == -1) {
                 if (!dfs(nei, 1 - c, color, graph)) return false;
             } else if (color[nei] == c) {
-                return false; // conflict
+                return true; // conflict
             }
         }
-        return true;
+        return false;
     }
 }

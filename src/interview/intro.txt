@@ -1,0 +1,21 @@
+
+
+
+
+
+ Good morning, thank you for the opportunity.
+  My name is Rakesh Ghosh,
+  and I have 4 years of experience in software development,
+  specializing in Java, Spring Boot, and micro-services.
+  I have been working at RS Software,
+  where I contributed to building scalable APIs and
+  developing high-performance payment application,
+  mostly the payment features like Auth, Sale, Refund, and Void, recurring, installment, etc.
+  also worked on integrating third-party payment brokers and gateways like tsys, worldpay etc.
+
+   I am skilled in problem-solving, writing clean, optimized & maintainable code,
+    and collaborating effectively within agile teams.
+
+I am now looking for an opportunity where I can apply my backend development expertise
+while further enhancing my knowledge in microservices and cloud technologies.
+That’s a brief introduction about me.

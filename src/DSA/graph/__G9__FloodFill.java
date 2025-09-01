@@ -37,16 +37,17 @@ public class __G9__FloodFill {
         int m = image.length;
         int n = image[0].length;
 
-        // Create a deep copy of the image
+        // Deep copy of original image
         int[][] result = new int[m][n];
         for (int i = 0; i < m; i++) {
-            result[i] = image[i].clone(); // Efficient deep copy of each row
+            result[i] = image[i].clone();
         }
 
         int originalColor = image[sr][sc];
-        if (originalColor != newColor) {
-            dfs(result, sr, sc, originalColor, newColor);
-        }
+        if (originalColor == newColor) return result; // no changes needed
+
+        boolean[][] visited = new boolean[m][n];
+        dfs(result, visited, sr, sc, originalColor, newColor);
 
         return result;
     }
@@ -54,22 +55,21 @@ public class __G9__FloodFill {
     /**
      * DFS helper to apply flood fill to connected pixels of the same color.
      */
-    private void dfs(int[][] image, int i, int j, int originalColor, int newColor) {
-        int m = image.length;
-        int n = image[0].length;
+    private void dfs(int[][] image, boolean[][] visited, int i, int j, int originalColor, int newColor) {
+        int m = image.length, n = image[0].length;
 
-        // Boundary and color mismatch check
-        if (i < 0 || i >= m || j < 0 || j >= n || image[i][j] != originalColor) {
+        // boundary + already visited + wrong color
+        if (i < 0 || i >= m || j < 0 || j >= n || visited[i][j] || image[i][j] != originalColor) {
             return;
         }
 
-        // Fill current pixel
+        visited[i][j] = true;
         image[i][j] = newColor;
 
-        // Explore all 4 directions
-        dfs(image, i + 1, j, originalColor, newColor); // down
-        dfs(image, i - 1, j, originalColor, newColor); // up
-        dfs(image, i, j + 1, originalColor, newColor); // right
-        dfs(image, i, j - 1, originalColor, newColor); // left
+        // directions (down, up, right, left)
+        int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        for (int[] d : dirs) {
+            dfs(image, visited, i + d[0], j + d[1], originalColor, newColor);
+        }
     }
 }

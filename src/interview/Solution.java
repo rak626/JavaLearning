@@ -3,7 +3,9 @@ package interview;
 import DSA.utils.TreeNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Solution {
     /**
@@ -61,11 +63,23 @@ public class Solution {
         int[] arr = {9, 4, 20, 5, 10, 5};
         int k = 35;
         List<Integer> subarray = Solution.findSubarray(arr, k);
-        System.out.println(subarray);
+//        System.out.println(subarray);
+        Solution.Sample();
     }
 
-    private static int maximumWidthOfBinaryTree(TreeNode node){
+    private static int maximumWidthOfBinaryTree(TreeNode node) {
         return 0;
+    }
+
+    private static void Sample() {
+        List<List<String>> mainList = Arrays.asList(
+                Arrays.asList("abc", "ab"),
+                Arrays.asList("jab", "jj", "hh"),
+                Arrays.asList("amo", "mo", "ef")
+        );
+
+        List<String> result = mainList.stream().flatMap(e -> e.stream().filter(f -> f.startsWith("a"))).collect(Collectors.toList());
+        System.out.println(result);
     }
 
 }

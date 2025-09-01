@@ -8,79 +8,82 @@ import java.util.Queue;
 /**
  * Problem: Topological Sort (BFS - Kahn's Algorithm)
  * <ul>
- *     <li>Link: <a href="https://www.geeksforgeeks.org/problems/topological-sort/1">GFG</a></li>
- *     <li>Difficulty: Medium</li>
- *     <li>Tags: Graph, Breadth-First Search (BFS), Topological Sorting</li>
+ *   <li>Link: <a href="https://www.geeksforgeeks.org/problems/topological-sort/1">GFG</a></li>
+ *   <li>Difficulty: Medium</li>
+ *   <li>Tags: Graph, Breadth-First Search (BFS), Topological Sorting</li>
  * </ul>
  *
  * Approach:
  * <ul>
- *     <li>Represent the directed graph using an adjacency list built from the edge list.</li>
- *     <li>Compute the indegree (number of incoming edges) for each vertex.</li>
- *     <li>Initialize a queue with all vertices having indegree = 0.</li>
- *     <li>Process vertices from the queue:
+ *   <li>Build an adjacency list from the edge list.</li>
+ *   <li>Compute indegree[]: number of incoming edges for each node.</li>
+ *   <li>Push all nodes with indegree = 0 into a queue.</li>
+ *   <li>While the queue is not empty:
+ *     <ul>
+ *       <li>Pop a node, add it to the topological order.</li>
+ *       <li>For each neighbor:
  *         <ul>
- *             <li>Remove a vertex from the queue and add it to the result list.</li>
- *             <li>For each neighbor, reduce its indegree by 1.</li>
- *             <li>If a neighbor’s indegree becomes 0, add it to the queue.</li>
+ *           <li>Decrease its indegree.</li>
+ *           <li>If indegree becomes 0, push it into the queue.</li>
  *         </ul>
- *     </li>
- *     <li>Works only for Directed Acyclic Graphs (DAGs).</li>
+ *       </li>
+ *     </ul>
+ *   </li>
+ *   <li>Result list will contain the topological order.</li>
  * </ul>
  *
  * Time Complexity:
  * <ul>
- *     <li>O(V + E) — each vertex and edge is processed once.</li>
+ *   <li>O(V + E) — Each vertex and edge is processed once.</li>
  * </ul>
  *
  * Space Complexity:
  * <ul>
- *     <li>O(V + E) — adjacency list, indegree array, and queue.</li>
+ *   <li>O(V + E) — Adjacency list, indegree array, and queue.</li>
  * </ul>
  */
 public class __G22__TopoSort_BFS {
 
     /**
-     * Performs topological sorting of a DAG using BFS (Kahn's Algorithm).
+     * Performs topological sorting of a DAG using BFS (Kahn’s Algorithm).
      *
      * @param V     Number of vertices (0-indexed).
      * @param edges Directed edges of the graph (u -> v).
-     * @return A list representing the topological order of vertices.
+     * @return List representing topological order of vertices.
      */
     public static List<Integer> topoSort(int V, int[][] edges) {
-        // Build adjacency list
+        // Step 1: Build adjacency list
         List<List<Integer>> adj = new ArrayList<>(V);
-        for (int i = 0; i < V; i++) {
-            adj.add(new ArrayList<>());
-        }
+        for (int i = 0; i < V; i++) adj.add(new ArrayList<>());
+
         int[] indegree = new int[V];
-
         for (int[] e : edges) {
-            adj.get(e[0]).add(e[1]);
-            indegree[e[1]]++;
+            int u = e[0], v = e[1];
+            adj.get(u).add(v);
+            indegree[v]++;
         }
 
-        // Initialize queue with nodes of indegree 0
+        // Step 2: Initialize queue with nodes having indegree = 0
         Queue<Integer> q = new ArrayDeque<>();
-        for (int i = 0; i < V; i++)
-            if (indegree[i] == 0) {
-                q.offer(i);
-            }
+        for (int i = 0; i < V; i++) {
+            if (indegree[i] == 0) q.offer(i);
+        }
 
+        // Step 3: Process nodes
         List<Integer> order = new ArrayList<>();
-
-        // Process queue
         while (!q.isEmpty()) {
             int node = q.poll();
             order.add(node);
 
             for (int neighbor : adj.get(node)) {
-                if (--indegree[neighbor] == 0) {
-                    q.offer(neighbor);
-                }
+                indegree[neighbor]--;
+                if (indegree[neighbor] == 0) q.offer(neighbor);
             }
         }
 
-        return order; // Will contain topological order
+        return order; // Topological order
     }
 }
+
+
+// Q.1 How to recognize that which problem need to use topo sort ?

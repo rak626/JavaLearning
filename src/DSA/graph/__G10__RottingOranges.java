@@ -70,12 +70,9 @@ public class __G10__RottingOranges {
                 int r = pos[0], c = pos[1];
 
                 for (int[] d : direction) {
-                    int newRow = r + d[0];
-                    int newCol = c + d[1];
+                    int newRow = r + d[0], newCol = c + d[1];
 
-                    if (newRow >= 0 && newRow < rows &&
-                            newCol >= 0 && newCol < cols &&
-                            grid[newRow][newCol] == 1) {
+                    if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && grid[newRow][newCol] == 1) {
                         grid[newRow][newCol] = 2;
                         q.offer(new int[]{newRow, newCol});
                         freshCnt--;

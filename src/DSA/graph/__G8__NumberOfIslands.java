@@ -39,23 +39,19 @@ public class __G8__NumberOfIslands {
     public int numIslands(char[][] grid) {
         if (grid == null || grid.length == 0) return 0;
 
-        int m = grid.length;
-        int n = grid[0].length;
+        int m = grid.length, n = grid[0].length;
         boolean[][] visited = new boolean[m][n];
-        int numIslands = 0;
+        int count = 0;
 
-        // Iterate through the grid
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                // Start DFS if land and not visited
                 if (grid[i][j] == '1' && !visited[i][j]) {
                     dfs(grid, visited, i, j);
-                    numIslands++;
+                    count++;
                 }
             }
         }
-
-        return numIslands;
+        return count;
     }
 
     /**
@@ -67,20 +63,17 @@ public class __G8__NumberOfIslands {
      * @param j       Current column index
      */
     private void dfs(char[][] grid, boolean[][] visited, int i, int j) {
-        int m = grid.length;
-        int n = grid[0].length;
+        int m = grid.length, n = grid[0].length;
 
-        // Boundary conditions and base cases
-        if (i < 0 || i >= m || j < 0 || j >= n) return;
-        if (grid[i][j] != '1' || visited[i][j]) return;
+        // boundary + already visited + water check
+        if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] != '1' || visited[i][j]) return;
 
-        // Mark current cell as visited
         visited[i][j] = true;
 
-        // Explore all 4 directions
-        dfs(grid, visited, i + 1, j); // down
-        dfs(grid, visited, i - 1, j); // up
-        dfs(grid, visited, i, j + 1); // right
-        dfs(grid, visited, i, j - 1); // left
+        // directions: down, up, right, left
+        int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        for (int[] d : dirs) {
+            dfs(grid, visited, i + d[0], j + d[1]);
+        }
     }
 }
