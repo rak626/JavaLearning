@@ -37,7 +37,7 @@ import java.util.PriorityQueue;
  *   <li><b>Total:</b> <code>O(N * M)</code></li>
  * </ul>
  */
-public class __G35__ShortestDistanceInBinaryMaze {
+public class __G37__ShortestDistanceInBinaryMaze {
 
     // 4 possible movement directions
     private static final int[][] DIRS = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
@@ -93,3 +93,5 @@ public class __G35__ShortestDistanceInBinaryMaze {
         return -1; // destination not reachable
     }
 }
+
+// this is most efficient with normal bfs
