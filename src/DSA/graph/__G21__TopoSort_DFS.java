@@ -13,7 +13,7 @@ import java.util.List;
  * </ul>
  *
  * <p>
- * Topological sort of a Directed Acyclic Graph (DAG) is a linear ordering
+ * Topological-Sort of a Directed Acyclic Graph (DAG) is a linear ordering
  * of its vertices such that for every directed edge <code>u → v</code>,
  * vertex <code>u</code> appears before vertex <code>v</code> in the ordering.
  * </p>

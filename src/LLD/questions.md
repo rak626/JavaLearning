@@ -1,0 +1,39 @@
+## 🔹 Most Asked LLD Questions
+
+- [ ] Parking lot system (multi-level, different vehicle types)
+- [ ] Movie ticket booking system
+- [ ] Chess game
+- [ ] Tic-Tac-Toe
+- [ ] Snake and Ladders
+- [ ] Elevator (lift) control system
+- [ ] Library management system
+- [ ] Hotel management / hotel booking system
+- [ ] Airline reservation system
+- [ ] Ride-sharing / cab booking system (Uber/Ola-like)
+- [ ] Online food ordering system (Zomato/Swiggy-like)
+- [ ] Vending machine
+- [ ] Coffee machine
+- [ ] ATM system
+- [ ] Online shopping cart (e-commerce)
+- [ ] Inventory management system
+- [ ] Order management system
+- [ ] Payment wallet system
+- [ ] Expense sharing app (Splitwise)
+- [ ] Customer support / ticket resolution system
+- [ ] Notification system (push/email/SMS)
+- [ ] Pub-sub message handler
+- [ ] Rate limiter
+- [ ] URL shortener
+- [ ] Logging & monitoring framework
+- [ ] Text editor / word processor (with flyweight pattern)
+- [ ] Thread-safe HashMap implementation
+- [ ] LRU cache
+- [ ] Distributed cache system
+- [ ] Polling/voting system
+- [ ] Recommendation system
+- [ ] File storage system (Google Drive/Dropbox-like)
+- [ ] Chat/messaging system (WhatsApp-like, group & 1-1)
+- [ ] Social media feed/timeline (Twitter/Facebook-like)
+- [ ] Search autocomplete system
+- [ ] Online quiz/exam system
+- [ ] Music/playlist management system (Spotify-like)

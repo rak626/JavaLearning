@@ -38,7 +38,7 @@ package DSA.graph;
  *   <li>Dynamic programming on graphs</li>
  * </ul>
  */
-public class __G41__FloydWarshall {
+public class __G42__FloydWarshall {
     private static final int INF = (int) 1e8;
 
     /**
