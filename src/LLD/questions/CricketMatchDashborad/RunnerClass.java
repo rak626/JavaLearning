@@ -1,4 +1,4 @@
-package LLD.practice.CricketMatchDashborad;
+package LLD.questions.CricketMatchDashborad;
 
 import java.util.Arrays;
 import java.util.List;

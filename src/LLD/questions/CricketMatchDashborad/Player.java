@@ -1,4 +1,4 @@
-package LLD.practice.CricketMatchDashborad;
+package LLD.questions.CricketMatchDashborad;
 
 public class Player {
     private String name;

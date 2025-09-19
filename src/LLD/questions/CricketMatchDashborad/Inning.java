@@ -1,6 +1,4 @@
-package LLD.practice.CricketMatchDashborad;
-
-import java.util.List;
+package LLD.questions.CricketMatchDashborad;
 
 public class Inning {
     private Team battingTeam;
