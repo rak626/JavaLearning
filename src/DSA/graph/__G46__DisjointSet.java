@@ -1,6 +1,8 @@
 package DSA.graph;
 
 
+import DSA.utils.DisjointSet;
+
 public class __G46__DisjointSet {
     public static void main(String[] args) {
         DisjointSet ds = new DisjointSet(8);

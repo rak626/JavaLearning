@@ -1,5 +1,7 @@
 package DSA.graph;
 
+import DSA.utils.DisjointSet;
+
 import java.util.HashSet;
 import java.util.Set;
 

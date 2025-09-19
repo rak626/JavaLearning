@@ -1,4 +1,4 @@
-package DSA.graph;
+package DSA.utils;
 
 /**
  * Disjoint Set Union (Union-Find) data structure.

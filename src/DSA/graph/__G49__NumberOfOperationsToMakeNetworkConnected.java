@@ -1,5 +1,7 @@
 package DSA.graph;
 
+import DSA.utils.DisjointSet;
+
 /**
  * Problem: Number Of Operations To Make Network Connected
  * <ul>
