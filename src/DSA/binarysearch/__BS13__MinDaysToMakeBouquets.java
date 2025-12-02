@@ -1,7 +1,5 @@
 package DSA.binarysearch;
 
-import java.util.Arrays;
-
 /**
  * Problem: Minimum Number of Days to Make m Bouquets
  * <ul>
@@ -51,8 +49,12 @@ public class __BS13__MinDaysToMakeBouquets {
         // If not enough flowers at all
         if ((long) m * k > n) return -1;
 
-        int left = Arrays.stream(bloomDay).min().getAsInt();
-        int right = Arrays.stream(bloomDay).max().getAsInt();
+        int left = Integer.MAX_VALUE, right = Integer.MIN_VALUE;
+        for (int d : bloomDay) {
+            left = Math.min(left, d);
+            right = Math.max(right, d);
+        }
+
         int ans = -1;
 
         while (left <= right) {
@@ -85,6 +87,7 @@ public class __BS13__MinDaysToMakeBouquets {
             } else {
                 cnt = 0;
             }
+            if (bouquets >= m) return true;
         }
         return bouquets >= m;
     }

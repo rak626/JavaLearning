@@ -3,44 +3,66 @@ package DSA.binarysearch;
 /**
  * Problem: Search Insert Position
  * <ul>
- *   <li>Link: <a href="https://leetcode.com/problems/search-insert-position/description/">Search Insert Position</a></li>
+ *   <li>LeetCode: <a href="https://leetcode.com/problems/search-insert-position/description/">
+ *       Search Insert Position</a></li>
  *   <li>Difficulty: Easy</li>
- *   <li>Tags: binarysearch</li>
+ *   <li>Tags: Binary Search</li>
  * </ul>
+ *
+ * <p><b>Objective:</b></p>
+ * <p>
+ * Given a sorted integer array and a target value, return the index if the target
+ * is found. If not, return the index where it should be inserted while maintaining
+ * sorted order.
+ * </p>
+ *
+ * <p><b>Key Insight:</b></p>
+ * <p>
+ * Since the array is sorted, binary search provides an optimal O(log n) solution.
+ * Upon termination, the left pointer <code>l</code> automatically represents the
+ * correct insertion index for the target.
+ * </p>
  *
  * <p><b>Approach:</b></p>
  * <ol>
- *   <li>The array is sorted, so we can apply binary search for efficient lookup.</li>
- *   <li>Initialize two pointers: <code>l</code> (low) = 0 and <code>h</code> (high) = nums.length - 1.</li>
- *   <li>While <code>l <= h</code>:</li>
+ *   <li>Initialize two pointers: <code>l = 0</code>, <code>h = nums.length - 1</code>.</li>
+ *   <li>Loop while <code>l <= h</code>:</li>
  *   <ul>
- *       <li>Compute <code>mid = l + (h - l) / 2</code> to avoid integer overflow.</li>
+ *       <li>Compute <code>mid = l + (h - l) / 2</code> (overflow-safe form).</li>
  *       <li>If <code>nums[mid] == target</code>, return <code>mid</code>.</li>
- *       <li>If <code>nums[mid] &lt; target</code>, move <code>l = mid + 1</code>.</li>
- *       <li>If <code>nums[mid] &gt; target</code>, move <code>h = mid - 1</code>.</li>
+ *       <li>If <code>nums[mid] &lt; target</code>, move right: <code>l = mid + 1</code>.</li>
+ *       <li>Else move left: <code>h = mid - 1</code>.</li>
  *   </ul>
- *   <li>If the target is not found, <code>l</code> will point to the index where the target should be inserted.</li>
+ *   <li>When the loop exits, <code>l</code> is the correct insertion position.</li>
  * </ol>
  *
- * <p><b>Time Complexity:</b> O(log n) — binary search over n elements.</p>
- * <p><b>Space Complexity:</b> O(1) — only constant extra space used.</p>
+ * <p><b>Why return <code>l</code>?</b></p>
+ * <p>
+ * Binary search narrows down the search space until <code>l</code> overtakes <code>h</code>.
+ * At that point, <code>l</code> points to the smallest index where the target can be placed
+ * without violating the sorted order.
+ * </p>
+ *
+ * <p><b>Time Complexity:</b> O(log n) — halves the search space at each step.</p>
+ * <p><b>Space Complexity:</b> O(1) — constant auxiliary memory.</p>
  */
 public class __BS2_SearchInsertPosition {
 
     public int searchInsert(int[] nums, int target) {
-        int l = 0, h = nums.length - 1; // high should be nums.length - 1
+        int l = 0, h = nums.length - 1;
 
         while (l <= h) {
-            int mid = l + ((h - l) >> 1); // Avoid overflow
+            int mid = l + ((h - l) >> 1); // overflow-safe midpoint
 
-            if (nums[mid] == target) return mid;
-            else if (nums[mid] < target) {
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] < target) {
                 l = mid + 1;
             } else {
                 h = mid - 1;
             }
         }
-        return l; // Insertion index
-    }
 
+        return l; // correct insertion index
+    }
 }

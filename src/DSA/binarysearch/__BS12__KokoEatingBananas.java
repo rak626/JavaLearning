@@ -1,7 +1,5 @@
 package DSA.binarysearch;
 
-import java.util.Arrays;
-
 /**
  * Problem: Koko Eating Bananas
  * <ul>
@@ -47,12 +45,15 @@ public class __BS12__KokoEatingBananas {
 
     public int minEatingSpeed(int[] piles, int h) {
         int left = 1;
-        int right = Arrays.stream(piles).max().getAsInt();
+        int right = 0;
+        for (int p : piles) {
+            right = Math.max(right, p);
+        }
 
         while (left <= right) {
             int mid = left + (right - left) / 2;
 
-            if (timeTaken(piles, mid) <= h) {
+            if (timeTakenLeq(piles, mid, h)) {
                 right = mid - 1; // try slower speed
             } else {
                 left = mid + 1;  // need faster speed
@@ -63,13 +64,18 @@ public class __BS12__KokoEatingBananas {
     }
 
     /**
-     * Helper function to compute hours taken at given speed.
+     * Return true if total hours needed at 'speed' is <= limitH.
+     * Uses long accumulation and early exit to avoid overflow.
      */
-    private int timeTaken(int[] piles, int speed) {
-        int hours = 0;
+    private boolean timeTakenLeq(int[] piles, int speed, int limitH) {
+        long hours = 0L;
         for (int pile : piles) {
-            hours += (pile + speed - 1) / speed; // integer ceil
+            // compute ceil(pile / speed) using long arithmetic
+            hours += ((long) pile + speed - 1) / speed;
+
+            // early exit if already exceeds limitH
+            if (hours > limitH) return false;
         }
-        return hours;
+        return hours <= limitH;
     }
 }

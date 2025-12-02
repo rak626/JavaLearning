@@ -40,26 +40,22 @@ import java.util.Map;
 public class __SW5__FruitIntoBaskets {
 
     public int totalFruit(int[] fruits) {
-        int n = fruits.length;
-        int left = 0, right = 0;
-        int maxFruits = 0;
-        Map<Integer, Integer> fruitCount = new HashMap<>();
+        Map<Integer, Integer> count = new HashMap<>();
+        int left = 0, max = 0;
 
-        for (; right < n; right++) {
-            fruitCount.merge(fruits[right], 1, Integer::sum);
+        for (int right = 0; right < fruits.length; right++) {
+            count.put(fruits[right], count.getOrDefault(fruits[right], 0) + 1);
 
-            // shrink window if more than 2 types
-            while (fruitCount.size() > 2) {
-                fruitCount.merge(fruits[left], -1, Integer::sum);
-                if (fruitCount.get(fruits[left]) == 0) {
-                    fruitCount.remove(fruits[left]);
-                }
-                left++;
+            while (count.size() > 2) {
+                int f = fruits[left++];
+                int newCount = count.get(f) - 1;
+                if (newCount == 0) count.remove(f);
+                else count.put(f, newCount);
             }
 
-            maxFruits = Math.max(maxFruits, right - left + 1);
+            max = Math.max(max, right - left + 1);
         }
-
-        return maxFruits;
+        return max;
     }
+
 }

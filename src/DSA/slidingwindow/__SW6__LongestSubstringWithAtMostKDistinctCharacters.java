@@ -39,19 +39,19 @@ import java.util.Map;
 public class __SW6__LongestSubstringWithAtMostKDistinctCharacters {
 
     public static int kDistinctChars(int k, String str) {
-        int n = str.length();
+        Map<Character, Integer> count = new HashMap<>();
         int left = 0, maxLen = 0;
-        Map<Character, Integer> cnt = new HashMap<>();
 
-        for (int right = 0; right < n; right++) {
-            cnt.merge(str.charAt(right), 1, Integer::sum);
+        for (int right = 0; right < str.length(); right++) {
+            char r = str.charAt(right);
+            count.put(r, count.getOrDefault(r, 0) + 1);
 
-            // shrink window if distinct characters exceed k
-            while (cnt.size() > k) {
-                if (cnt.merge(str.charAt(left), -1, Integer::sum) == 0) {
-                    cnt.remove(str.charAt(left));
-                }
-                left++;
+            // shrink until only k distinct chars remain
+            while (count.size() > k) {
+                char l = str.charAt(left++);
+                int newCount = count.get(l) - 1;
+                if (newCount == 0) count.remove(l);
+                else count.put(l, newCount);
             }
 
             maxLen = Math.max(maxLen, right - left + 1);
@@ -59,4 +59,5 @@ public class __SW6__LongestSubstringWithAtMostKDistinctCharacters {
 
         return maxLen;
     }
+
 }

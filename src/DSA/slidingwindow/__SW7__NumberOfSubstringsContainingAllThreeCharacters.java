@@ -1,8 +1,5 @@
 package DSA.slidingwindow;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Problem: Number Of Substrings Containing All Three Characters
  * <ul>
@@ -39,23 +36,25 @@ import java.util.Map;
 public class __SW7__NumberOfSubstringsContainingAllThreeCharacters {
 
     public int numberOfSubstrings(String s) {
-        int n = s.length();
-        int left = 0, right = 0, cnt = 0;
-        Map<Character, Integer> cntMap = new HashMap<>();
+        int[] freq = new int[3];
+        int left = 0, ans = 0, distinct = 0;
 
-        for (; right < n; right++) {
-            cntMap.merge(s.charAt(right), 1, Integer::sum);
+        for (int right = 0; right < s.length(); right++) {
+            int r = s.charAt(right) - 'a';
+            if (freq[r] == 0)
+                distinct++;
+            freq[r]++;
 
-            // shrink window if all three characters are present
-            while (cntMap.size() == 3) {
-                cnt += n - right;
-                if (cntMap.merge(s.charAt(left), -1, Integer::sum) == 0) {
-                    cntMap.remove(s.charAt(left));
-                }
-                left++;
+            while (distinct == 3) {
+                ans += s.length() - right;
+
+                int l = s.charAt(left++) - 'a';
+                freq[l]--;
+                if (freq[l] == 0)
+                    distinct--;
             }
         }
 
-        return cnt;
+        return ans;
     }
 }
