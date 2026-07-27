@@ -62,13 +62,6 @@ public class __G16__NumberOfDistinctIslands {
 
     /**
      * DFS to explore an island and record its shape relative to the starting cell.
-     *
-     * @param grid  the grid
-     * @param row   current row
-     * @param col   current column
-     * @param baseR starting row of the island
-     * @param baseC starting column of the island
-     * @param shape list to record the relative coordinates of the island
      */
     private void dfs(int[][] grid, int row, int col, int baseR, int baseC, List<String> shape) {
         vis[row][col] = true;

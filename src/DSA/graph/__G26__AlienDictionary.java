@@ -3,9 +3,9 @@ package DSA.graph;
 import java.util.*;
 
 /**
- * Problem: Alien Dictionary
+ * <h2>Problem: Alien Dictionary</h2>
  * <ul>
- *   <li>Link: <a href="https://leetcode.com/problems/alien-dictionary/">LeetCode</a></li>
+ *   <li>Link: <a href="https://www.geeksforgeeks.org/problems/alien-dictionary/1">GeeksForGeeks</a></li>
  *   <li>Difficulty: Hard</li>
  *   <li>Tags: Graph, Topological Sort, BFS, DFS</li>
  * </ul>

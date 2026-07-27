@@ -33,56 +33,58 @@ import java.util.*;
 public class __G29__WordLadder {
 
     /**
-     * Helper record to store a word and the step count to reach it.
-     */
-    record Node(String word, int step) {}
-
-    /**
      * Computes the shortest transformation sequence from beginWord to endWord.
-     *
-     * @param beginWord starting word
-     * @param endWord   target word
-     * @param wordList  list of valid intermediate words
-     * @return length of the shortest transformation sequence, or 0 if not possible
      */
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        // Store dictionary words in a HashSet for O(1) lookups
-        Set<String> set = new HashSet<>(wordList);
+        Set<String> wordSet = new HashSet<>(wordList);
 
-        // BFS queue initialized with beginWord at step 1
-        Deque<Node> queue = new ArrayDeque<>();
-        queue.offer(new Node(beginWord, 1));
-
-        // Standard BFS loop
-        while (!queue.isEmpty()) {
-            Node current = queue.poll();
-            String word = current.word;
-            int step = current.step;
-
-            // Found the target word -> return transformation length
-            if (word.equals(endWord)) {
-                return step;
-            }
-
-            // Try changing each character of the current word
-            for (int i = 0; i < word.length(); i++) {
-                char[] chars = word.toCharArray();
-
-                // Replace with every possible character 'a' to 'z'
-                for (char ch = 'a'; ch <= 'z'; ch++) {
-                    chars[i] = ch;
-                    String nextWord = new String(chars);
-
-                    // If the transformed word exists in the dictionary
-                    if (set.contains(nextWord)) {
-                        set.remove(nextWord); // remove to avoid revisiting
-                        queue.offer(new Node(nextWord, step + 1));
-                    }
-                }
-            }
+        // Quick exit if the target isn't reachable
+        if (!wordSet.contains(endWord)) {
+            return 0;
         }
 
-        // No valid transformation found
+        var queue = new ArrayDeque<String>();
+        queue.offer(beginWord);
+        wordSet.remove(beginWord); // Mark as visited
+
+        int level = 1;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+
+            // Process all nodes at the current level
+            for (int k = 0; k < size; k++) {
+                String currentWord = queue.poll();
+
+                if (endWord.equals(currentWord)) {
+                    return level;
+                }
+
+                char[] chars = currentWord.toCharArray();
+
+                // Mutate each character to find single-edit neighbors
+                for (int i = 0; i < chars.length; i++) {
+                    char originalChar = chars[i];
+
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        if (c == originalChar) continue;
+
+                        chars[i] = c;
+                        String nextWord = new String(chars);
+
+                        if (wordSet.contains(nextWord)) {
+                            queue.offer(nextWord);
+                            wordSet.remove(nextWord); // Mark as visited
+                        }
+                    }
+
+                    chars[i] = originalChar; // Reset character
+                }
+            }
+
+            level++;
+        }
+
         return 0;
     }
 }

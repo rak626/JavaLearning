@@ -42,7 +42,7 @@ import java.util.*;
  * Time Complexity: O(V + E) &nbsp;&nbsp; (each node and edge visited once)<br>
  * Space Complexity: O(V) &nbsp;&nbsp; (visited arrays + recursion stack)
  */
-public class __G17__CycleDetectionInDirectedGraph_DFS {
+public class __G19__CycleDetectionInDirectedGraph_DFS {
 
     private boolean[] vis;
     private boolean[] pathVis;

@@ -54,12 +54,12 @@ public class __G17_G18__Bipartite_Graph {
         int[] color = new int[n];
         Arrays.fill(color, -1); // -1 means uncolored
 
-        for (int start = 0; start < n; start++) {
-            if (color[start] != -1) continue; // already visited
+        for (int i = 0; i < n; i++) {
+            if (color[i] != -1) continue; // already visited
 
             Deque<Integer> queue = new ArrayDeque<>();
-            queue.offer(start);
-            color[start] = 0;
+            queue.offer(i);
+            color[i] = 0;
 
             while (!queue.isEmpty()) {
                 int node = queue.poll();

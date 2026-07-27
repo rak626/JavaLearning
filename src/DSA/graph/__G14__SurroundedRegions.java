@@ -58,14 +58,6 @@ public class __G14__SurroundedRegions {
             }
         }
     }
-
-    /**
-     * Depth-first search to mark all connected 'O's from the given cell.
-     *
-     * @param r     Current row
-     * @param c     Current column
-     * @param board The grid
-     */
     private void dfs(int r, int c, char[][] board) {
         vis[r][c] = true;
 

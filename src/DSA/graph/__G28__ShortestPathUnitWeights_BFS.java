@@ -49,12 +49,6 @@ public class __G28__ShortestPathUnitWeights_BFS {
     /**
      * Computes the shortest path from a given source node to all other nodes
      * in an undirected graph with unit edge weights.
-     *
-     * @param V     Number of vertices in the graph
-     * @param edges 2D array of edges, where each edge is [u, v] (undirected)
-     * @param src   The source vertex from which distances are calculated
-     * @return An integer array of size V where dist[i] is the shortest distance
-     *         from src to i. If node i is unreachable, dist[i] = -1.
      */
     public int[] shortestPath(int V, int[][] edges, int src) {
         // Step 1: Build adjacency list

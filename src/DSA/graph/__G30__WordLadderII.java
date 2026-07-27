@@ -19,7 +19,7 @@ import java.util.*;
 public class __G30__WordLadderII {
 
     // --------------------------------------------------------
-    // 1️⃣ Optimized BFS + DFS Approach
+    // 1️. Optimized BFS + DFS Approach
     // --------------------------------------------------------
 
     /**
@@ -29,106 +29,130 @@ public class __G30__WordLadderII {
      * <p>
      * Time: O(N * M * 26 + P * L)
      * Space: O(N * M)
-     * where N = number of words, M = word length,
-     * P = number of shortest paths, L = path length
+     * where
+     * <ul>
+     *     <li>N = number of words</li>
+     *     <li>M = word length</li>
+     *     <li>P = number of shortest paths</li>
+     *     <li>L = path length</li>
+     * </ul>
      */
     public List<List<String>> findLaddersOptimized(String beginWord, String endWord, List<String> wordList) {
-        Set<String> dict = new HashSet<>(wordList);
         List<List<String>> results = new ArrayList<>();
-        if (!dict.contains(endWord)) return results;
+        Set<String> wordSet = new HashSet<>(wordList);
 
-        // Graph: word -> list of next words in shortest paths
-        Map<String, List<String>> neighbors = new HashMap<>();
-        // Distance: shortest distance from beginWord to each word
-        Map<String, Integer> distance = new HashMap<>();
+        // Early check: if endWord is not in the dictionary, no sequence exists
+        if (!wordSet.contains(endWord)) {
+            return results;
+        }
 
-        // Step 1: BFS to build shortest-path graph
-        bfs(beginWord, endWord, dict, neighbors, distance);
+        Map<String, List<String>> adj = new HashMap<>();
+        Map<String, Integer> dist = new HashMap<>();
 
-        // Step 2: DFS to collect all shortest sequences
+        // Phase 1: BFS to build the shortest-path graph and distance map
+        bfs(beginWord, endWord, wordSet, adj, dist);
+
+        // If endWord was never reached during BFS, return empty list
+        if (!dist.containsKey(endWord)) {
+            return results;
+        }
+
+        // Phase 2: DFS to collect all shortest path sequences
         List<String> path = new ArrayList<>();
         path.add(beginWord);
-        dfs(beginWord, endWord, neighbors, distance, path, results);
+        dfs(beginWord, endWord, adj, dist, path, results);
 
         return results;
     }
 
-    private void bfs(String beginWord, String endWord, Set<String> dict,
-                     Map<String, List<String>> neighbors, Map<String, Integer> distance) {
-        // Initialize graph adjacency lists
-        for (String word : dict) {
-            neighbors.put(word, new ArrayList<>());
-        }
-        neighbors.put(beginWord, new ArrayList<>());
+    private void bfs(String beginWord, String endWord, Set<String> wordSet,
+                     Map<String, List<String>> adj, Map<String, Integer> dist) {
 
-        Queue<String> queue = new LinkedList<>();
+        for (String word : wordSet) {
+            adj.put(word, new ArrayList<>());
+        }
+        adj.putIfAbsent(beginWord, new ArrayList<>());
+
+        Queue<String> queue = new ArrayDeque<>();
         queue.offer(beginWord);
-        distance.put(beginWord, 0);
+        dist.put(beginWord, 0);
+
+        boolean foundEnd = false;
 
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            boolean foundEnd = false; // stop once shortest path to endWord is reached
+            int levelSize = queue.size();
 
-            for (int i = 0; i < size; i++) {
-                String word = queue.poll();
-                int currDist = distance.get(word);
+            for (int i = 0; i < levelSize; i++) {
+                String currentWord = queue.poll();
+                int currentDist = dist.get(currentWord);
 
-                // Find all valid next words (1 letter difference)
-                for (String next : getNeighbors(word, dict)) {
-                    neighbors.get(word).add(next); // connect word -> next in graph
+                for (String nextWord : getNeighbors(currentWord, wordSet)) {
 
-                    // If 'next' not visited yet, assign distance and enqueue
-                    if (!distance.containsKey(next)) {
-                        distance.put(next, currDist + 1);
-                        if (next.equals(endWord)) {
-                            foundEnd = true; // we found the endWord, stop after this level
-                        } else {
-                            queue.offer(next);
+                    // Case 1: First time discovering 'nextWord'
+                    if (!dist.containsKey(nextWord)) {
+                        dist.put(nextWord, currentDist + 1);
+                        adj.get(currentWord).add(nextWord);
+                        queue.offer(nextWord);
+
+                        if (nextWord.equals(endWord)) {
+                            foundEnd = true;
                         }
+                    }
+                    // Case 2: 'nextWord' was discovered by another parent at the SAME level
+                    else if (dist.get(nextWord) == currentDist + 1) {
+                        adj.get(currentWord).add(nextWord);
                     }
                 }
             }
 
-            if (foundEnd) break; // ensure only shortest paths are kept
+            // Stop BFS once the current level finishes after finding endWord
+            if (foundEnd) break;
         }
     }
 
-    private void dfs(String word, String endWord, Map<String, List<String>> neighbors,
-                     Map<String, Integer> distance, List<String> path, List<List<String>> results) {
-        // Base case: reached target word
-        if (word.equals(endWord)) {
+    private void dfs(String currentWord, String endWord, Map<String, List<String>> adj,
+                     Map<String, Integer> dist, List<String> path, List<List<String>> results) {
+
+        // Base Case: Target reached -> add snapshot of current path
+        if (currentWord.equals(endWord)) {
             results.add(new ArrayList<>(path));
             return;
         }
 
-        // Explore only neighbors that are exactly +1 step further
-        for (String next : neighbors.get(word)) {
-            if (distance.get(next) == distance.get(word) + 1) {
-                path.add(next);                // choose
-                dfs(next, endWord, neighbors, distance, path, results); // recurse
-                path.remove(path.size() - 1);  // backtrack
+        if (!adj.containsKey(currentWord)) return;
+
+        for (String nextWord : adj.get(currentWord)) {
+            // Strictly follow the shortest path tree (+1 level step)
+            if (dist.containsKey(nextWord) && dist.get(nextWord) == dist.get(currentWord) + 1) {
+                path.add(nextWord);                                     // Choose
+                dfs(nextWord, endWord, adj, dist, path, results);      // Recurse
+                path.removeLast();                          // Backtrack
             }
         }
     }
 
-    private List<String> getNeighbors(String word, Set<String> dict) {
-        List<String> res = new ArrayList<>();
+    private List<String> getNeighbors(String word, Set<String> wordSet) {
+        List<String> neighbors = new ArrayList<>();
         char[] chars = word.toCharArray();
 
-        // Try changing each character to 'a'..'z'
         for (int i = 0; i < chars.length; i++) {
-            char old = chars[i];
-            for (char ch = 'a'; ch <= 'z'; ch++) {
-                if (ch == old) continue;
-                chars[i] = ch;
-                String newWord = new String(chars);
-                if (dict.contains(newWord)) {
-                    res.add(newWord);
+            char originalChar = chars[i];
+
+            for (char c = 'a'; c <= 'z'; c++) {
+                if (c == originalChar) continue;
+
+                chars[i] = c;
+                String mutatedWord = new String(chars);
+
+                if (wordSet.contains(mutatedWord)) {
+                    neighbors.add(mutatedWord);
                 }
             }
-            chars[i] = old; // restore
+
+            chars[i] = originalChar; // Reset back
         }
-        return res;
+
+        return neighbors;
     }
 
     // --------------------------------------------------------
