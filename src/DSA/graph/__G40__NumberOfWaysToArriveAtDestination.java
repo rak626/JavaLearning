@@ -44,20 +44,16 @@ public class __G40__NumberOfWaysToArriveAtDestination {
 
     /**
      * Count number of shortest paths from node 0 to node n-1.
-     *
-     * @param n     number of cities
-     * @param roads list of roads [u, v, time]
-     * @return number of shortest paths modulo 1e9+7
      */
     public int countPaths(int n, int[][] roads) {
         // Step 1: Build adjacency list
-        List<List<int[]>> graph = new ArrayList<>();
-        for (int i = 0; i < n; i++) graph.add(new ArrayList<>());
+        List<List<int[]>> adj = new ArrayList<>();
+        for (int i = 0; i < n; i++) adj.add(new ArrayList<>());
 
         for (int[] road : roads) {
             int u = road[0], v = road[1], t = road[2];
-            graph.get(u).add(new int[]{v, t});
-            graph.get(v).add(new int[]{u, t});
+            adj.get(u).add(new int[]{v, t});
+            adj.get(v).add(new int[]{u, t});
         }
 
         // Step 2: Distance and ways arrays
@@ -80,7 +76,7 @@ public class __G40__NumberOfWaysToArriveAtDestination {
 
             if (d > dist[u]) continue; // Skip outdated entry
 
-            for (int[] edge : graph.get(u)) {
+            for (int[] edge : adj.get(u)) {
                 int v = edge[0], t = edge[1];
                 long newDist = d + t;
 

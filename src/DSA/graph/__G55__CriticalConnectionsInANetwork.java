@@ -60,10 +60,6 @@ public class __G55__CriticalConnectionsInANetwork {
 
     /**
      * Finds all critical connections (bridges) in an undirected network graph.
-     *
-     * @param n number of nodes in the graph
-     * @param connections list of undirected edges in the graph
-     * @return list of critical connections (bridges)
      */
     public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
         // Step 1: Build adjacency list representation
@@ -91,15 +87,7 @@ public class __G55__CriticalConnectionsInANetwork {
     }
 
     /**
-     * DFS traversal to compute discovery and low-link values, identifying critical connections.
-     *
-     * @param node current node in DFS
-     * @param parent parent of the current node to avoid trivial back-edges
-     * @param adj adjacency list of the graph
-     * @param vis visited array
-     * @param tin discovery time array
-     * @param low lowest reachable time array
-     * @param bridges list to store all bridges found
+     * DFS traversal to compute discovery and low-link values, identifying critical connections
      */
     private void dfs(int node, int parent, List<List<Integer>> adj, boolean[] vis,
                      int[] tin, int[] low, List<List<Integer>> bridges) {

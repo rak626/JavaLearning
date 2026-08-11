@@ -25,11 +25,6 @@ public class __G54__KosarajuSCC {
 
     /**
      * Performs DFS on the original graph to fill the stack according to finishing times.
-     *
-     * @param adj adjacency list of the graph
-     * @param vis visited array
-     * @param st stack to store nodes in finishing order
-     * @param node current node
      */
     private void dfs1(List<List<Integer>> adj, boolean[] vis, Deque<Integer> st, int node) {
         vis[node] = true;
@@ -43,10 +38,6 @@ public class __G54__KosarajuSCC {
 
     /**
      * DFS on the transposed graph to mark all nodes of __1__ SCC.
-     *
-     * @param adjT adjacency list of the transposed graph
-     * @param vis visited array
-     * @param node current node
      */
     private void dfs2(List<List<Integer>> adjT, boolean[] vis, int node) {
         vis[node] = true;
@@ -59,9 +50,6 @@ public class __G54__KosarajuSCC {
 
     /**
      * Returns the number of strongly connected components in a directed graph.
-     *
-     * @param adj adjacency list representation of the graph
-     * @return number of strongly connected components
      */
     public int kosaraju(List<List<Integer>> adj) {
         int v = adj.size();

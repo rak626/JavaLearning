@@ -31,7 +31,7 @@ public class __G41__BellManFord_Algorithm {
         Arrays.fill(dist, INF);        // Initialize all distances to INF
         dist[src] = 0;                 // Distance to source is 0
 
-        // Relax all edges V-1 times
+        // Relax all edges V-1 times sequentially
         for (int i = 0; i < V - 1; i++) {
             for (int[] e : edges) {
                 int u = e[0], v = e[1], w = e[2];

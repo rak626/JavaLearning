@@ -94,4 +94,95 @@ public class __G35__PrintShortestPath_Dijkstra {
 
         return new ArrayList<>(stack);
     }
+
+
+    static class Solution {
+
+        private record Pair(int node, long dist){}
+
+        private long[] dijkstra(int V, ArrayList<ArrayList<int[]>> adj, int src) {
+
+            long[] dist = new long[V + 1];
+            Arrays.fill(dist, Long.MAX_VALUE);
+
+            PriorityQueue<Pair> pq =
+                    new PriorityQueue<>((a, b) -> Long.compare(a.dist, b.dist));
+
+            dist[src] = 0;
+            pq.offer(new Pair(src, 0));
+
+            while (!pq.isEmpty()) {
+
+                Pair cur = pq.poll();
+
+                if (cur.dist != dist[cur.node])
+                    continue;
+
+                for (int[] edge : adj.get(cur.node)) {
+
+                    int next = edge[0];
+                    int wt = edge[1];
+
+                    if (dist[cur.node] + wt < dist[next]) {
+                        dist[next] = dist[cur.node] + wt;
+                        pq.offer(new Pair(next, dist[next]));
+                    }
+                }
+            }
+
+            return dist;
+        }
+
+        public ArrayList<Integer> shortestPath(int V, int[][] edges, int src, int dest) {
+
+            ArrayList<ArrayList<int[]>> adj = new ArrayList<>();
+
+            for (int i = 0; i <= V; i++)
+                adj.add(new ArrayList<>());
+
+            for (int[] e : edges) {
+                adj.get(e[0]).add(new int[]{e[1], e[2]});
+                adj.get(e[1]).add(new int[]{e[0], e[2]});
+            }
+
+            // Sort neighbours so smaller vertex is considered first
+            for (int i = 1; i <= V; i++) {
+                adj.get(i).sort((a, b) -> Integer.compare(a[0], b[0]));
+            }
+
+            long[] distSrc = dijkstra(V, adj, src);
+            long[] distDest = dijkstra(V, adj, dest);
+
+            ArrayList<Integer> ans = new ArrayList<>();
+
+            if (distSrc[dest] == Long.MAX_VALUE) {
+                ans.add(-1);
+                return ans;
+            }
+
+            long shortest = distSrc[dest];
+            int u = src;
+
+            ans.add(u);
+
+            while (u != dest) {
+
+                for (int[] edge : adj.get(u)) {
+
+                    int v = edge[0];
+                    int wt = edge[1];
+
+                    if (distSrc[u] + wt == distSrc[v] &&
+                            distSrc[u] + wt + distDest[v] == shortest) {
+
+                        ans.add(v);
+                        u = v;
+                        break;
+                    }
+                }
+            }
+
+            return ans;
+        }
+    }
 }

@@ -106,13 +106,14 @@ public class __G32_G33__Dijkstra {
 
         while (!pq.isEmpty()) {
             Pair curr = pq.poll();
-            if (curr.dist > dist[curr.node]) continue; // skip outdated entry
+            int u = curr.node, w  = curr.dist;
+            if (w > dist[u]) continue; // skip outdated entry
 
-            for (Pair edge : adj.get(curr.node)) {
-                int newDist = dist[curr.node] + edge.dist;
-                if (newDist < dist[edge.node]) {
-                    dist[edge.node] = newDist;
-                    pq.offer(new Pair(edge.node, newDist));
+            for (Pair nei : adj.get(u)) {
+                int v = nei.node, distance = nei.dist;
+                if (dist[v] < dist[u] + distance) {
+                    dist[v] = dist[u] + distance;
+                    pq.offer(new Pair(v, dist[u] + distance));
                 }
             }
         }

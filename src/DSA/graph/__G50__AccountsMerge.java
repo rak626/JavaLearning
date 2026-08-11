@@ -67,7 +67,7 @@ public class __G50__AccountsMerge {
             List<String> emails = entry.getValue();
             Collections.sort(emails);
             var merge = new ArrayList<String>();
-            merge.add(accounts.get(parent).get(0));
+            merge.add(accounts.get(parent).getFirst());
             merge.addAll(emails);
             res.add(merge);
         }

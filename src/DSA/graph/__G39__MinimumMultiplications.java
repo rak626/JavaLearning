@@ -45,12 +45,8 @@ public class __G39__MinimumMultiplications {
     private record State(int steps, int number) {}
 
     /**
-     * Dijkstra-style solution.
-     *
-     * @param arr   multipliers
-     * @param start starting number
-     * @param end   target number
-     * @return minimum steps, -1 if unreachable
+     * Dijkstra-style solution. but not used
+     * TC: O(MOD x K log MOD) -> k len of the array
      */
     public int minimumMultiplicationsDijkstra(int[] arr, int start, int end) {
         var dist = new HashMap<Integer, Integer>();
@@ -81,11 +77,7 @@ public class __G39__MinimumMultiplications {
 
     /**
      * BFS solution.
-     *
-     * @param arr   multipliers
-     * @param start starting number
-     * @param end   target number
-     * @return minimum steps, -1 if unreachable
+     * TC: O(MOD * K) k-> len of array
      */
     public int minimumMultiplicationsBFS(int[] arr, int start, int end) {
         int[] dist = new int[MOD];

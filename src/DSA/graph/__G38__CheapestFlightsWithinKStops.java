@@ -43,13 +43,8 @@ public class __G38__CheapestFlightsWithinKStops {
 
     /**
      * Finds the cheapest price from source to destination with at most k stops.
-     *
-     * @param n       number of cities
-     * @param flights flights array [from, to, price]
-     * @param src     source city
-     * @param dst     destination city
-     * @param k       maximum allowed stops
-     * @return minimum cost to reach destination, -1 if not possible
+     * Priority Queue
+     * TC: O(E log V)
      */
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
         // Build adjacency list
@@ -83,5 +78,38 @@ public class __G38__CheapestFlightsWithinKStops {
         }
 
         return -1; // destination unreachable
+    }
+
+    /**
+     * normal bfs as stops count is diff by const unit(1)
+     * TC: O( V + E)
+     *
+     */
+    public int findCheapestPrice_Queue(int n, int[][] flights, int src, int dst, int k) {
+        var adj = new ArrayList<List<Flight>>(n);
+        for (int i = 0; i < n; i++) adj.add(new ArrayList<>());
+        for (var flight : flights) {
+            adj.get(flight[0]).add(new Flight(flight[1], flight[2]));
+        }
+        var dist = new int[n];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[src] = 0;
+
+        var q = new ArrayDeque<State>();
+        q.offer(new State(0, src, 0));
+        while (!q.isEmpty()) {
+            var curr = q.poll();
+
+            if( curr.stops > k) continue;
+
+            for (var nei : adj.get(curr.city)) {
+                if( dist[nei.destination] > curr.totalCost + nei.cost){
+                    dist[nei.destination] = curr.totalCost + nei.cost;
+                    q.offer(new State(curr.totalCost + nei.cost, nei.destination, curr.stops + 1));
+                }
+            }
+        }
+        return dist[dst] == Integer.MAX_VALUE ? -1 : dist[dst];
+
     }
 }
